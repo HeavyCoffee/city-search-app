@@ -1,0 +1,17 @@
+<resources>
+    <!-- Common -->
+    <string name="common_internet_error">Плохое интернет соединение</string>
+    <string name="common_something_went_wrong_error">Что-то пошло не так</string>
+
+    <!-- City list -->
+    <string name="city_list_name_country_template">%1$s, %2$s</string>
+    <string name="city_list_title">Список городов</string>
+    <string name="city_list_search_placeholder">Введите название города</string>
+
+    <!-- City details -->
+    <string name="city_details_title">Информация о городе</string>
+    <string name="city_details_city_label">Город</string>
+    <string name="city_details_country_label">Страна</string>
+    <string name="city_details_population_label">Население</string>
+    <string name="city_details_search_info_btn">Поиск информации о городе</string>
+</resources>

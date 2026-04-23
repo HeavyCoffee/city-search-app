@@ -23,7 +23,6 @@ androidxCoreVer = "1.18.0"
 androidxEspressoVer = "3.7.0"
 androidxLifecycleVer = "2.10.0"
 androidxTestExtVer = "1.3.0"
-composeMaterial3Ver = "1.9.0"
 junitVer = "4.13.2"
 koinVer = "4.2.1"
 ktorVer = "3.4.2"
@@ -32,6 +31,7 @@ kotlinxSerializationVer = "1.11.0"
 decomposeVer = "3.5.0"
 essentyLifecycleVer = "2.5.0"
 orbitVer = "11.0.0"
+pagingVer = "3.4.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlinVer" }
@@ -45,6 +45,10 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycleVer" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycleVer" }
 
+# Paging
+androidx-pagingCommon = { module = "androidx.paging:paging-common", version.ref = "pagingVer" }
+androidx-pagingCompose = { module = "androidx.paging:paging-compose", version.ref = "pagingVer" }
+
 # Decompose
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decomposeVer" }
 decompose-composeExt = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decomposeVer" }
@@ -57,7 +61,6 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorVer" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVer" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVer" } # for iOS
-ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktorVer" } # for wasmJs/browser
 ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVer" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktorVer" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorVer" }
@@ -78,7 +81,6 @@ compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMul
 compose-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatformVer" }
 compose-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatformVer" }
 compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatformVer" }
-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeMaterial3Ver" }
 
 # Kotlin serialization
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationVer" }
