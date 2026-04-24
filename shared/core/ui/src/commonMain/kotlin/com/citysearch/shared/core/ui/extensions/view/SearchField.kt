@@ -75,16 +75,17 @@ fun SearchField(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (value.isBlank()) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth().weight(1f),
-                        text = placeholder,
-                        style = AppTheme.typography.titleMedium,
-                        color = colors.placeholder,
-                        maxLines = 1
-                    )
-                } else {
-                    Box(Modifier.weight(1f)) { innerTextField() }
+                Box(Modifier.weight(1f)) {
+                    if (value.isBlank()) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = placeholder,
+                            style = AppTheme.typography.titleMedium,
+                            color = colors.placeholder,
+                            maxLines = 1
+                        )
+                    }
+                    innerTextField()
                 }
 
                 Image(
