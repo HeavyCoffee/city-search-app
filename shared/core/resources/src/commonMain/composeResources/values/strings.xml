@@ -2,6 +2,7 @@
     <!-- Common -->
     <string name="common_internet_error">Плохое интернет соединение</string>
     <string name="common_something_went_wrong_error">Что-то пошло не так</string>
+    <string name="common_update">Обновить</string>
 
     <!-- City list -->
     <string name="city_list_name_country_template">%1$s, %2$s</string>

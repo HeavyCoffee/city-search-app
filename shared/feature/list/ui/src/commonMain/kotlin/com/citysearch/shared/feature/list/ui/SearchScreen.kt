@@ -22,9 +22,12 @@ import com.citysearch.shared.core.resources.Res
 import com.citysearch.shared.core.resources.city_list_name_country_template
 import com.citysearch.shared.core.resources.city_list_search_placeholder
 import com.citysearch.shared.core.resources.city_list_title
+import com.citysearch.shared.core.resources.common_something_went_wrong_error
+import com.citysearch.shared.core.resources.common_update
 import com.citysearch.shared.core.ui.extensions.theme.AppTheme
 import com.citysearch.shared.core.ui.extensions.view.CityItem
 import com.citysearch.shared.core.ui.extensions.view.Divider
+import com.citysearch.shared.core.ui.extensions.view.ErrorBanner
 import com.citysearch.shared.core.ui.extensions.view.Loader
 import com.citysearch.shared.core.ui.extensions.view.SearchField
 import com.citysearch.shared.core.ui.extensions.view.Toolbar
@@ -72,7 +75,12 @@ fun SearchScreen(component: ListComponent) {
 
             if (cities.loadState.refresh is LoadState.Error) {
                 item {
-                    // TODO добавить обработку ошибок
+                    ErrorBanner(
+                        modifier = Modifier.fillParentMaxSize(),
+                        text = stringResource(Res.string.common_something_went_wrong_error),
+                        btnText = stringResource(Res.string.common_update),
+                        onRetryClick = { cities.retry() }
+                    )
                 }
             }
 
