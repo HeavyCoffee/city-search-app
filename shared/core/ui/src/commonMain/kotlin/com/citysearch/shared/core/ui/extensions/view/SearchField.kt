@@ -1,6 +1,7 @@
 package com.citysearch.shared.core.ui.extensions.view
 
 import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,10 +26,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.citysearch.shared.core.resources.Res
 import com.citysearch.shared.core.resources.ic_search
@@ -53,6 +57,9 @@ fun SearchField(
     val borderColor by transition.animateColor { isFocused ->
         if (isFocused) colors.borderFocused else colors.border
     }
+    val shadowAlpha by transition.animateFloat {
+        if (isFocused) 1f else 0f
+    }
 
     BasicTextField(
         modifier = modifier
@@ -67,6 +74,16 @@ fun SearchField(
         decorationBox = { innerTextField ->
             Row(
                 modifier = Modifier
+                    .dropShadow(
+                        shape = shape,
+                        shadow = Shadow(
+                            radius = 4.dp,
+                            color = Color.Black.copy(alpha = .12f),
+                            spread = 0.dp,
+                            offset = DpOffset(0.dp, 2.dp),
+                            alpha = shadowAlpha
+                        )
+                    )
                     .clip(shape = shape)
                     .fillMaxSize()
                     .background(backgroundColor)
