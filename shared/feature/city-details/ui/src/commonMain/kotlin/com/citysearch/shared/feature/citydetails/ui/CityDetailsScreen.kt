@@ -16,6 +16,7 @@ import com.citysearch.shared.core.resources.Res
 import com.citysearch.shared.core.resources.city_details_city_label
 import com.citysearch.shared.core.resources.city_details_country_label
 import com.citysearch.shared.core.resources.city_details_population_label
+import com.citysearch.shared.core.resources.city_details_population_value
 import com.citysearch.shared.core.resources.city_details_search_info_btn
 import com.citysearch.shared.core.resources.city_details_title
 import com.citysearch.shared.core.ui.extensions.view.InfoCell
@@ -48,7 +49,6 @@ fun CityDetailsScreen(component: CityDetailsComponent) {
             label = stringResource(Res.string.city_details_city_label),
             description = viewState.city.name
         )
-        // TODO дергать страну из локали по коду
         InfoCell(
             modifier = contentModifier,
             label = stringResource(Res.string.city_details_country_label),
@@ -58,7 +58,10 @@ fun CityDetailsScreen(component: CityDetailsComponent) {
         InfoCell(
             modifier = contentModifier,
             label = stringResource(Res.string.city_details_population_label),
-            description = viewState.city.population.toString()
+            description = stringResource(
+                Res.string.city_details_population_value,
+                viewState.city.population.toString()
+            )
         )
         Spacer(Modifier.weight(1f))
         PrimaryButton(

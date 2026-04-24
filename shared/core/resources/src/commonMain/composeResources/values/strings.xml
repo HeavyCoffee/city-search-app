@@ -14,5 +14,6 @@
     <string name="city_details_city_label">Город</string>
     <string name="city_details_country_label">Страна</string>
     <string name="city_details_population_label">Население</string>
+    <string name="city_details_population_value">%s чел</string>
     <string name="city_details_search_info_btn">Поиск информации о городе</string>
 </resources>
