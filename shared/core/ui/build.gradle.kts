@@ -9,6 +9,7 @@ kotlin {
             api(libs.compose.foundation)
             api(libs.compose.preview)
             implementation(projects.shared.core.resources)
+            implementation(libs.compose.material3)
         }
     }
 }

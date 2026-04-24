@@ -62,7 +62,6 @@ fun PrimaryButton(
     }
 }
 
-@Immutable
 data class PrimaryButtonColors(
     val background: Color,
     val backgroundPressed: Color,

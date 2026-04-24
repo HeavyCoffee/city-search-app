@@ -6,9 +6,13 @@ plugins {
 }
 
 kotlin {
+    android {
+        androidResources { enable = true }
+    }
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.compose.resources)
+            implementation(libs.compose.runtime)
+            api(libs.compose.resources)
         }
     }
 }

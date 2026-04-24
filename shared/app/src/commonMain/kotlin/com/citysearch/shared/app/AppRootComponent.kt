@@ -1,52 +1,62 @@
 package com.citysearch.shared.app
 
 import androidx.compose.runtime.Composable
-import com.citysearch.shared.core.decompose.decompose.ext.AppComponentContext
+import com.arkivanov.decompose.router.stack.ChildStack
+import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.value.Value
+import com.citysearch.shared.core.decompose.decompose.AppComponentContext
+import com.citysearch.shared.feature.navigation.presentation.NavigationComponent
+import com.citysearch.shared.feature.navigation.ui.NavigationScreen
+import kotlinx.serialization.Serializable
+import org.koin.core.annotation.InjectedParam
+import org.koin.core.annotation.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
+import org.koin.core.parameter.parametersOf
 
-interface AppRootComponent {
-//    val stack: Value<ChildStack<*, FlowComponent>>
+interface AppRootComponent : KoinComponent {
+    val stack: Value<ChildStack<*, ChildComponent>>
 }
 
+@Singleton(binds = [AppRootComponent::class])
 internal class AppRootComponentImpl(
-    componentContext: AppComponentContext
+    @InjectedParam componentContext: AppComponentContext
 ) : AppRootComponent, AppComponentContext by componentContext {
-//    private val navigation = StackNavigation<FlowConfig>()
+    private val navigation = StackNavigation<ChildConfig>()
 
-//    override val stack: Value<ChildStack<*, FlowComponent>> = childStack(
-//        source = navigation,
-//        serializer = FlowConfig.serializer(),
-//        initialConfiguration = FlowConfig.Launch,
-//        childFactory = ::componentFactory
-//    )
+    override val stack: Value<ChildStack<*, ChildComponent>> = childStack(
+        source = navigation,
+        serializer = ChildConfig.serializer(),
+        initialConfiguration = ChildConfig.Navigation,
+        childFactory = ::componentFactory
+    )
 
-//    private fun componentFactory(
-//        config: FlowConfig,
-//        componentContext: AppComponentContext
-//    ): FlowComponent = when (config) {
-//        FlowConfig.Launch -> FlowComponent.Launch
-//        FlowConfig.Auth -> FlowComponent.Auth()
-//        FlowConfig.NavMenu -> FlowComponent.NavMenu()
-//    }
+    private fun componentFactory(
+        config: ChildConfig,
+        componentContext: AppComponentContext
+    ): ChildComponent = when (config) {
+        ChildConfig.Navigation -> ChildComponent.Navigation(
+            get{ parametersOf(componentContext) }
+        )
+    }
 }
 
-sealed interface FlowComponent {
+sealed class ChildComponent {
     @Composable
-    open fun Content() = Unit
-
-    data object Launch : FlowComponent
-//
-//    data class NavMenu(val component: NavMenuComponent) : FlowComponent {
-//        @Composable
-//        override fun Content() = component.Content()
-//    }
+    abstract fun Content()
+    data class Navigation(
+        val component: NavigationComponent
+    ) : ChildComponent() {
+        @Composable
+        override fun Content() {
+            NavigationScreen(component)
+        }
+    }
 }
 
-//@Serializable
-//internal sealed interface FlowConfig {
-//    @Serializable
-//    data object Launch : FlowConfig
-//    @Serializable
-//    data object Auth : FlowConfig
-//    @Serializable
-//    data object NavMenu : FlowConfig
-//}
+@Serializable
+internal sealed class ChildConfig {
+    @Serializable
+    data object Navigation : ChildConfig()
+}

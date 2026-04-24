@@ -11,9 +11,6 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.client.js)
-        }
         commonMain.dependencies {
             api(libs.ktor.core)
             implementation(libs.ktor.client.serialization)

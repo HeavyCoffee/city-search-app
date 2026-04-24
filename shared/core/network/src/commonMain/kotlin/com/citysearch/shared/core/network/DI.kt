@@ -14,7 +14,7 @@ class CoreNetworkModule {
     @Singleton
     fun provideHttpClient(): HttpClient = HttpClient(
         HttpClientFactory(
-            baseUrl = "",
+            baseUrl = "http://dev-dep.tools.urent.tech:8080",
             headers = mapOf(HttpHeaders.Accept to "application/json; charset=utf-8")
         )
     )
