@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.citysearch.shared.core.resources.Res
 import com.citysearch.shared.core.resources.city_details_city_label
@@ -25,10 +26,20 @@ import com.citysearch.shared.core.ui.extensions.view.Toolbar
 import com.citysearch.shared.feature.citydetails.presentation.CityDetailsComponent
 import org.jetbrains.compose.resources.stringResource
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun CityDetailsScreen(component: CityDetailsComponent) {
     val viewState by component.collectAsState()
+    val uriHandler = LocalUriHandler.current
+
+    component.collectSideEffect { effect ->
+        when (effect) {
+            is CityDetailsComponent.SideEffect.OpenInBrowser -> {
+               uriHandler.openUri(effect.uri)
+            }
+        }
+    }
 
     Column(
         modifier = Modifier

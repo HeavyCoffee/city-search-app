@@ -16,7 +16,7 @@ class CityDetailsComponentImpl(
     @InjectedParam private val city: CityDetails,
     @InjectedParam private val onBackClicked: () -> Unit
 ) : CityDetailsComponent, AppComponentContext by componentContext {
-    override val container: Container<State, Nothing> =
+    override val container: Container<State, SideEffect> =
         componentScope.container(State(city))
 
     override fun onNavBackClick() {
@@ -24,6 +24,15 @@ class CityDetailsComponentImpl(
     }
 
     override fun onSearchInfoClick() {
+        intent {
+            postSideEffect(
+                SideEffect.OpenInBrowser(GOOGLE_SEARCH_URI + state.city.name)
+            )
+        }
+    }
 
+    // В идеале можно вынести это в бизнесс слой
+    private companion object {
+        const val GOOGLE_SEARCH_URI = "https://www.google.com/search?q="
     }
 }
